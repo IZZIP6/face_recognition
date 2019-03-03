@@ -67,7 +67,7 @@ class VGG16Utils:
                                                               metric='cosine')
         return self.prediction
 
-    def euclidean_distance(self, gallery, prediction,  threshold1, metric):
+    def euclidean_distance(self, gallery, prediction, threshold1, metric):
         try:
             self.euclidean_dist = pairwise_distances(gallery,
                                                      np.matrix(prediction),
@@ -82,7 +82,9 @@ class VGG16Utils:
             self.score_id = sorted_array[1]/sorted_array[0]
             self.matched_id = self.id[min_index, 1]
             self.prob_distance = sorted_array[0]
+            print("PD")
             if sorted_array[0] < np.float(threshold1):
+                print("ERR")
                 self.add2gallery_temp()
                 self.accepted_probe = True
             else:
