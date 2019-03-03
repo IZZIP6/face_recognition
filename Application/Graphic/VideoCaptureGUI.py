@@ -54,7 +54,7 @@ class VideoCaptureGUI:
                           pady=9, padx=5,
                           rowspan=2)
         button4play = tk.Button(self.root,
-                                text="Save",
+                                text="Play",
                                 command=self.controller.next_video)
         button4play.grid(row=11,
                          column=0,
@@ -107,7 +107,7 @@ class VideoCaptureGUI:
                               selectcolor='#262626',
                               command=lambda: self.controller.use_pca(self.var_check4pca.get())
                               )
-        self.check4pca.grid(row=3,
+        self.check4pca.grid(row=4,
                             column=2,
                             sticky="nw",
                             padx=18)
@@ -117,15 +117,15 @@ class VideoCaptureGUI:
                                         selectcolor='#262626',
                                         command=lambda: self.controller.ask4load_components(self.var_check4use.get()))
         self.check4use_component.grid(row=5,
-                                      column=3,
-                                      sticky="w",
+                                      column=2,
+                                      sticky="nw",
                                       padx=18)
         self.prediction.config(text='Prediction',
                                background='#262626',
                                foreground='#ffffff',
                                selectcolor='#262626',
                                command=lambda: self.controller.use_prediction(self.var_checkpred.get()))
-        self.prediction.grid(row=4,
+        self.prediction.grid(row=3,
                              column=2,
                              sticky='nw',
                              padx=18)
