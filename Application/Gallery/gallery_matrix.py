@@ -1,8 +1,8 @@
 from Application.Logic.VGG16.VGG16Utils import VGG16Utils
 import numpy as np
 
-class watch_list:
 
+class WatchList:
     def __init__(self, version):
         self.vgg = VGG16Utils(version)
         self.path = version
@@ -23,7 +23,7 @@ class watch_list:
 
     def add_id(self, img, name):
         self.id_name = name
-        prediction = self.vgg.get_prediction(img, need4gallery=True, threshold1=None, threshold2=None, use_pca=False)
+        prediction = self.vgg.get_prediction(img, need4gallery=True, threshold1=None, use_pca=False)
         prediction_w_label = np.append(self.number_id, prediction)
         self.gallery = np.matrix(prediction)
         print(self.gallery_w_label.shape, "\t", prediction_w_label.shape)
@@ -32,9 +32,9 @@ class watch_list:
         self.fill_dict()
 
     def store_gallery(self):
-        np.savetxt('C:/Users/pizzi/Desktop/face_recognition/Dataset/Gallery/gallery.txt', np.c_[self.gallery_w_label], fmt="%.8f", delimiter="\t") #change path
+        np.savetxt(self.path+'Dataset/Gallery/gallery.txt', np.c_[self.gallery_w_label], fmt="%.8f", delimiter="\t")
 
     def fill_dict(self):
         self.loaded_id = np.vstack([self.loaded_id, [self.number_id, self.id_name]])
-        np.savetxt('C:/Users/pizzi/Desktop/face_recognition/Dataset/Gallery/for_slide/id.txt', np.c_[self.loaded_id], fmt="%s", delimiter="\t") #change path
+        np.savetxt(self.path+'Dataset/Gallery/id.txt', np.c_[self.loaded_id], fmt="%s", delimiter="\t")
         print(self.loaded_id)
